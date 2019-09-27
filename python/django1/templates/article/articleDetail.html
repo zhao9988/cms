@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这是文章列表详情页面</title>
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+</div>
+
+
+
+
+
+</body>
+<script>
+ init();
+    function init() {
+        var str=location.href;
+        var id=str.split("=")[1];
+        var storge=JSON.parse(localStorage.getItem("article"));
+        var currentUser=localStorage.getItem("currentUser");
+        var container ="";
+            var arr=[];
+             if (storge != null) {
+                 console.log(storge);
+                 arr = storge;
+                 for (var i = 0; i < arr.length; i++) {
+                     var articleList=arr[i]["articleList"];
+                     if (arr[i]["author"] == currentUser){
+                            for (var j=0;j<articleList.length;j++) {
+                                if (id == articleList[j]["id"]) {
+                                    console.log("")
+                                     var content="";
+                                     content += "<h1>"+articleList[j]["title"] +"</h1><div>"+articleList[j]["content"] +"</div>";
+                                     console.log(content);
+                                      container +=content;
+                                }
+                            }
+                             console.log(container);
+                              $(".wrap").html(container)
+                     }
+                 }
+             }
+
+    }
+
+
+
+
+
+</script>
+</html>

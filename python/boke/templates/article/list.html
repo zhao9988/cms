@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这是博客列表页面</title>
+    <link rel="stylesheet" href="/static/css/list.css">
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body>
+<button><a href="http://127.0.0.1:8000/add/">添加文章</a></button>
+<div class="container">
+    {% for item in data %}
+        <a href="http://127.0.0.1:8000/articleDetail/?aid={{ item.aid }}" ><ul>
+         <li>{{ item.title }}</li>
+         <li>{{ item.writetime }}</li>
+         <li>{{ item.author }}</li>
+    </ul></a>
+    {% endfor %}
+</div>
+</body>
+
+
+</html>
+
+

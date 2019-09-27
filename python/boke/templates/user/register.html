@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这是注册页面</title>
+    <link rel="stylesheet" href="/static/css/register.css">
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/jquery.validate.js"></script>
+    <script src="/static/js/jquery.form.js"></script>
+</head>
+<body>
+<form action="http://127.0.0.1:8000/registerHandle/" method="post">
+            {% csrf_token %}
+        <div>
+            <lable>用户名</lable>
+            <input type="text" placeholder="请输入用户名" name="username" class="username">
+        </div>
+         <div>
+            <lable>密码</lable>
+            <input type="password" placeholder="请输入密码" name="pwd" class="pwd">
+        </div>
+             <div>
+            <lable>email</lable>
+            <input type="email" placeholder="请输入邮箱" name="email" class="email">
+        </div>
+        <div>
+            <input type="submit" value="注册" class="subbtn">
+
+        </div>
+    </form>
+</body>
+<script type="text/javascript" >
+init();
+var  userName;
+var pwd;
+function init() {
+	ajax();
+}
+
+function ajax() {
+    $("form").validate({
+        rules:{
+                username:{
+                    required:true,
+                    minlength:2,
+                    maxlength:10
+                },
+                pwd: {
+                    required: true,
+                },
+                email:{
+                        required:false
+                }
+            },
+        submitHandler:function(form) {
+            alert("验证成功不提交");
+            $("form").ajaxSubmit(function (data) {
+                data=JSON.parse(data)
+                //后端返回的数据
+                console.log(data);
+                 alert(data["msg"])
+                if (data["code"] == 0) {
+                    toLogin()
+                }
+            })
+        }
+    })
+}
+function toLogin() {
+        location.href="http://127.0.0.1:8000/login/"
+
+}
+</script>
+</html>
+
+
