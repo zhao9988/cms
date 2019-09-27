@@ -1,9 +1,0 @@
-ul{
-    border: 1px solid #000;
-}
-ul li{
-    list-style: none;
-}
-.last{
-    display: inline-block;
-}
